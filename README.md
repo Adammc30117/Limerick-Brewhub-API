@@ -31,7 +31,7 @@ A Spring Boot backend API for managing and analyzing craft beer reviews, breweri
 4. **Configure Database Connection:**
    Edit `application.properties`:
 ```properties
-spring.datasource.url=jdbc:mysql://localhost:3306/beeranalytics
+spring.datasource.url=jdbc:mysql://localhost:3306/beerDB
 spring.datasource.username=root
 spring.datasource.password=your_password
 ```
