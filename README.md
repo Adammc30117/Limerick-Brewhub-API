@@ -1,21 +1,48 @@
 # Limerick Brewhub API
 
-A Spring Boot backend application for managing and analyzing craft beer reviews, breweries, and customer engagement across the EMEA region. Developed as part of an API Design & Development module.
-
+A Spring Boot backend API for managing and analyzing craft beer reviews, breweries, and customer engagement across the EMEA region. Built for academic evaluation and portfolio demonstration.
 ---
 ## 🚀 Features
-* **Task 1**: Customer summaries and brewery PDF reports with JSON, XML, TSV responses
-* **Task 2**: Add/update reviews, prevent duplicates, auto-update average ratings
-* **Task 3**: Generate analytics report + QR code linking to GitHub-hosted PDF
+* **Task 1:** Customer summaries and brewery PDF reports with JSON, XML, and TSV responses
+* **Task 2:** Add/update beer reviews, prevent duplicates, auto-update average ratings
+* **Task 3:** Generate a detailed analytics PDF + QR code linking to the report hosted on GitHub
 ---
 ## 📦 Tech Stack
 * Java 17, Spring Boot
 * Spring Data JPA & MySQL
-* JWT Authentication
+* JWT Security (Login, Logout, Refresh)
 * Apache PDFBox, ZXing, JFreeChart
+* Postman (for testing)
 ---
-## 🔐 Authentication
-**Login:**
+## 🔧 Setup Instructions
+1. **Install Required Tools:**
+   * Java 17+
+   * Maven
+   * IntelliJ IDEA (or any Java IDE)
+   * XAMPP (for Apache + MySQL)
+2. **Start XAMPP Services:**
+   * Launch XAMPP Control Panel
+   * Start **Apache** and **MySQL**
+   * Open **phpMyAdmin** at: http://localhost/phpmyadmin
+3. **Create MySQL Database:**
+   * Name it: `beerdb`
+   * Import SQL file from:
+     `src/main/resources/static/assets/postman-sql_commands/beerdb.sql`
+4. **Configure Database Connection:**
+   Edit `application.properties`:
+```properties
+spring.datasource.url=jdbc:mysql://localhost:3306/beeranalytics
+spring.datasource.username=root
+spring.datasource.password=your_password
+```
+5. **Run in IntelliJ:**
+   * Open the project folder
+   * Right-click `AssignmentOneStarterApplication.java` → Run
+---
+## 🧪 Testing with Postman
+Use the SQL + Postman command notes in:
+`src/main/resources/static/assets/postman-sql_commands/beerdb.sql`
+### 🔐 Authentication
 ```http
 POST /authenticate
 {
@@ -23,32 +50,14 @@ POST /authenticate
   "password": "TempPass123"
 }
 ```
-Use the returned `access_token` in the `Authorization` header.
----
-## 📬 Sample Endpoints
+Use the returned `access_token` for other API calls.
+### 🔍 Sample Endpoints
 ```http
 GET /api/customers/2/summary
 POST /api/reviews
 GET /api/breweries/1/report
 GET /api/analytics/report
 GET /api/analytics/qr-code
-```
----
-## 🗃 SQL Commands
-Located in: `static/assets/sql/beerdb.sql`
-
-Includes:
-* Check average ratings
-* Fetch reviews by user/beer
-* List breweries with reviews
----
-## 🛠 How to Run
-```bash
-1. Set up MySQL DB (e.g., beeranalytics)
-2. Configure application.properties
-3. Run:
-   mvn clean install
-   mvn spring-boot:run
 ```
 ---
 ## 📁 Folder Structure
@@ -58,14 +67,13 @@ Assignment_One_Starter/
 │   ├── main/
 │   │   ├── java/src/application/...
 │   │   └── resources/
-│   │       └── static/assets/sql/beerdb.sql
+│   │       └── static/assets/postman-sql_commands/beerdb.sql
 ├── pom.xml
 ```
 ---
-## 👨‍🎓 Author
+## 👨‍💻 Author
 Adam McLoughlin  
-Final Year IT Student  
-Technological University of the Shannon
+Final Year IT Student – Technological University of the Shannon
 ---
 ## 📌 Disclaimer
-This project is for academic purposes only. Any real tokens have been removed. The zipped project is provided for grading and demonstration purposes only.
+This project is for academic use only. Any sensitive API tokens have been removed. The GitHub ZIP is intended for safe demonstration.
